@@ -1,16 +1,27 @@
-# order_app
+# Order App
 
 A new Flutter project.
 
-## Getting Started
+# Code Structure
+## src folder
+This folder root folder for all flutter code
 
-This project is a starting point for a Flutter application.
+### bloc folder
+This folder contains the bloc class. 
+Bloc class is a class that will seperate business logic from the UI. 
+It contains all the operations which receive from user.
 
-A few resources to get you started if this is your first Flutter project:
+### model folder
+This folder contains simple model class.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+###pages folder
+This folder contains all classes that represent the screen of the app.
+Ex: Customer
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+### services folder
+This folder contains all classes that provider services for application
+- AppDb class responsible for database structure in app
+- DbService class contains all operation related to Database (CRUD)
+
+### main.dart file
+This is the entry point for kick start the application
