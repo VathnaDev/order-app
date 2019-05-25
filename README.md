@@ -14,7 +14,7 @@ It contains all the operations which receive from user.
 ### model folder
 This folder contains simple model class.
 
-###pages folder
+### pages folder
 This folder contains all classes that represent the screen of the app.
 Ex: Customer
 
