@@ -17,9 +17,11 @@ class DbService {
 
   Future<int> insertCustomer(Customer customer) async {
     final db = await _dbHelper.database;
-    try{
+    customer.createdDate = DateTime.now().millisecondsSinceEpoch;
+    customer.updatedDate = DateTime.now().millisecondsSinceEpoch;
+    try {
       return await db.insert("customers", customer.toMap());
-    }catch(ex){
+    } catch (ex) {
       print(ex.toString());
       return null;
     }
@@ -27,6 +29,7 @@ class DbService {
 
   Future<int> updateCustomer(Customer customer) async {
     var db = await _dbHelper.database;
+    customer.updatedDate = DateTime.now().millisecondsSinceEpoch;
     return await db.update(
       "customers",
       customer.toMap(),

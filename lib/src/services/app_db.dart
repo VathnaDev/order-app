@@ -27,7 +27,7 @@ class DatabaseHelper {
 
     var appDb = await openDatabase(
       path,
-      version: 1,
+      version: 2,
       onCreate: _createDatabase,
     );
     return appDb;
@@ -46,7 +46,20 @@ class DatabaseHelper {
       )
     """;
 
+    final createProductTableQuery = """
+      CREATE TABLE products (
+        id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        quantity INTEGER,
+        price DOUBLE,
+        image TEXT,
+        importedDate TIMESTAMP,
+        createdDate TIMESTAMP,
+        updatedDate TIMESTAMP
+      )
+    """;
+
     await db.execute(createTableCustomerQuery);
+    await db.execute(createProductTableQuery);
   }
-  
 }

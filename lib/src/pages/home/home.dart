@@ -19,7 +19,6 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {},
-        isExtended: true,
         label: Text("New Order"),
         icon: Icon(
           Icons.add_shopping_cart,

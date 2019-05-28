@@ -15,7 +15,7 @@ class MenuGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Material(
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(4),
       color: theme.primaryColor,
       child: InkWell(
         onTap: this.onTap,
@@ -25,13 +25,13 @@ class MenuGridItem extends StatelessWidget {
             Icon(
               icon,
               color: Colors.white,
-              size: 60,
+              size: 50,
             ),
             Text(
               title,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 20,
+                fontSize: 16,
               ),
             ),
           ],

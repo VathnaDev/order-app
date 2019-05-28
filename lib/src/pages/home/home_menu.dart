@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:order_app/src/pages/customer/customers_page.dart';
 import 'package:order_app/src/pages/home/menu_grid_item.dart';
+import 'package:order_app/src/pages/product/products_page.dart';
 
 class HomeMenu extends StatelessWidget {
   const HomeMenu({
@@ -37,7 +38,11 @@ class HomeMenu extends StatelessWidget {
         MenuGridItem(
           icon: Icons.fastfood,
           title: "Product",
-          onTap: () {},
+          onTap: () {
+             Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => ProductsPage()),
+            );
+          },
         ),
       ],
     );
