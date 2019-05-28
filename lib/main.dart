@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:order_app/src/pages/home/home.dart';
 
 import 'src/pages/customer/customers_page.dart';
 
@@ -12,7 +13,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: CustomersPage(),
+      home: HomePage(),
     );
   }
 }
