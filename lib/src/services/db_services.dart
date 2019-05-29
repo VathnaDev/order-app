@@ -1,4 +1,5 @@
 import 'package:order_app/src/model/customer.dart';
+import 'package:order_app/src/model/product.dart';
 import 'app_db.dart';
 
 class DbService {
@@ -51,6 +52,59 @@ class DbService {
     var db = await _dbHelper.database;
     final result = await db.query(
       "customers",
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+    return result.first;
+  }
+
+  Future<List<Product>> getAllProducts() async {
+    var db = await _dbHelper.database;
+    final productMaps = await db.query("products");
+    final products = List<Product>();
+
+    productMaps.forEach((c) {
+      products.add(Product.fromMap(c));
+    });
+    return products;
+  }
+
+  Future<int> insertProduct(Product product) async {
+    final db = await _dbHelper.database;
+    product.createdDate = DateTime.now().millisecondsSinceEpoch;
+    product.updatedDate = DateTime.now().millisecondsSinceEpoch;
+    try {
+      return await db.insert("products", product.toMap());
+    } catch (ex) {
+      print(ex.toString());
+      return null;
+    }
+  }
+
+  Future<int> updateProduct(Product product) async {
+    var db = await _dbHelper.database;
+    product.updatedDate = DateTime.now().millisecondsSinceEpoch;
+    return await db.update(
+      "products",
+      product.toMap(),
+      where: 'id = ?',
+      whereArgs: [product.id],
+    );
+  }
+
+  Future<int> deleteProduct(int id) async {
+    var db = await _dbHelper.database;
+    return await db.delete(
+      "products",
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
+  Future<Map<String, dynamic>> getProduct(int id) async {
+    var db = await _dbHelper.database;
+    final result = await db.query(
+      "products",
       where: 'id = ?',
       whereArgs: [id],
     );
