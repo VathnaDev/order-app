@@ -27,7 +27,7 @@ class DatabaseHelper {
 
     var appDb = await openDatabase(
       path,
-      version: 2,
+      version: 3,
       onCreate: _createDatabase,
     );
     return appDb;
@@ -59,7 +59,24 @@ class DatabaseHelper {
       )
     """;
 
+    final createAddressTableQuery = """
+    CREATE TABLE addresses (
+        id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+         addressName TEXT,
+         addressType TEXT,
+         city TEXT,
+         state TEXT,
+         zip TEXT,
+         priority INTEGER,
+         status TEXT
+         createdDate TIMESTAMP,
+         updatedDate TIMESTAMP,
+         customerId INTEGER,
+         FOREIGN KEY(customerId) REFERENCES customers(id)
+        )
+    """;
     await db.execute(createTableCustomerQuery);
     await db.execute(createProductTableQuery);
+    await db.execute(createAddressTableQuery);
   }
 }

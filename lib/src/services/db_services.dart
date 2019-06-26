@@ -1,3 +1,4 @@
+import 'package:order_app/src/model/address.dart';
 import 'package:order_app/src/model/customer.dart';
 import 'package:order_app/src/model/product.dart';
 import 'app_db.dart';
@@ -110,4 +111,23 @@ class DbService {
     );
     return result.first;
   }
+
+
+Future<int> insertAddress(Address address) async {
+    final db = await _dbHelper.database;
+    address.createdDate = DateTime.now().millisecondsSinceEpoch;
+    address.updatedDate = DateTime.now().millisecondsSinceEpoch;
+    try {
+      return await db.insert("addresses",address.toMap());
+    } catch (ex) {
+      print(ex.toString());
+      return null;
+    }
+  }
+
+
+
+
+  
+
 }

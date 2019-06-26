@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:order_app/src/pages/address/address_page.dart';
 import 'package:order_app/src/pages/customer/customers_page.dart';
 import 'package:order_app/src/pages/home/menu_grid_item.dart';
 import 'package:order_app/src/pages/product/products_page.dart';
@@ -41,6 +42,15 @@ class HomeMenu extends StatelessWidget {
           onTap: () {
              Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => ProductsPage()),
+            );
+          },
+        ),
+        MenuGridItem(
+          icon: Icons.location_on,
+          title: "Address",
+          onTap: () {
+             Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => AddressPage()),
             );
           },
         ),
