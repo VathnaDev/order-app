@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:order_app/src/bloc/customer_bloc.dart';
 import 'package:order_app/src/model/customer.dart';
+import 'package:order_app/src/pages/customer/customer_detail_page.dart';
 import 'package:order_app/src/pages/customer/customer_form_page.dart';
 
 class AddressPage extends StatefulWidget {
@@ -9,7 +10,7 @@ class AddressPage extends StatefulWidget {
 }
 
 class _AddressPageState extends State<AddressPage> {
-    final CustomerBloc _customerBloc = CustomerBloc();
+  final CustomerBloc _customerBloc = CustomerBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class _AddressPageState extends State<AddressPage> {
         centerTitle: true,
         title: Text("Address"),
       ),
-       body: StreamBuilder<List<Customer>>(
+      body: StreamBuilder<List<Customer>>(
         stream: _customerBloc.customers,
         builder: (context, snapshot) {
           if (!snapshot.hasData)
@@ -39,9 +40,9 @@ class _AddressPageState extends State<AddressPage> {
                 child: ListTile(
                   onTap: () {
                     final newPage = MaterialPageRoute(
-                      builder: (context) => CustomerFormPage(
-                            customer: customer,
+                      builder: (context) => CustomerDetailPage(
                             customerBloc: _customerBloc,
+                            customer: customer,
                           ),
                     );
                     Navigator.push(context, newPage);
@@ -89,9 +90,7 @@ class _AddressPageState extends State<AddressPage> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add_location),
-        onPressed: () {
-         
-        },
+        onPressed: () {},
       ),
     );
   }

@@ -31,12 +31,12 @@ class Address {
   Address.fromMap(Map<String, dynamic> map) {
     id = map['id'];
     addressName = map['addressName'];
-    addressType = map['Address'];
+    addressType = map['addressType'];
     city = map['city'];
-    state = map[state];
-    zip = map[zip];
-    priority = map[priority];
-    status = map[status];
+    state = map['state'];
+    zip = map['zip'];
+    priority = map['priority'];
+    status = map['status'];
     createdDate = map['createdDate'];
     updatedDate = map['updatedDate'];
 

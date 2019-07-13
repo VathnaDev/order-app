@@ -27,7 +27,7 @@ class DatabaseHelper {
 
     var appDb = await openDatabase(
       path,
-      version: 3,
+      version: 6,
       onCreate: _createDatabase,
     );
     return appDb;
@@ -68,7 +68,7 @@ class DatabaseHelper {
          state TEXT,
          zip TEXT,
          priority INTEGER,
-         status TEXT
+         status TEXT,
          createdDate TIMESTAMP,
          updatedDate TIMESTAMP,
          customerId INTEGER,

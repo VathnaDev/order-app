@@ -1,3 +1,4 @@
+import 'package:order_app/src/model/address.dart';
 import 'package:order_app/src/model/customer.dart';
 import 'package:order_app/src/services/db_services.dart';
 import 'package:rxdart/subjects.dart';
@@ -35,7 +36,7 @@ class CustomerBloc {
 
   Future<int> deleteCustomer(Customer customer) async {
     final id = await _dbService.deleteCustomer(customer.id);
-     fetchCustomerFromDb();
+    fetchCustomerFromDb();
     return id;
   }
 
@@ -43,5 +44,11 @@ class CustomerBloc {
   //It helps us from get memory leak
   void dispose() {
     _customers.close();
+  }
+
+  Future<int> addCustomerAddress(Address address) async {
+    final id = await _dbService.insertAddress(address);
+    fetchCustomerFromDb();
+    return id;
   }
 }

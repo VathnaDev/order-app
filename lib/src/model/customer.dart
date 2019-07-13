@@ -1,3 +1,5 @@
+import 'package:order_app/src/model/address.dart';
+
 class Customer {
   int id;
   String name;
@@ -7,6 +9,8 @@ class Customer {
   int createdDate;
   int updatedDate;
 
+  List<Address> addresses = List();
+
   Customer() {
     id = null;
     name = "";
@@ -15,6 +19,7 @@ class Customer {
     phone = "";
     createdDate = 0;
     updatedDate = 0;
+    addresses = List();
   }
 
   Customer.fromMap(Map<String, dynamic> map) {

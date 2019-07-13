@@ -8,12 +8,32 @@ class DbService {
 
   Future<List<Customer>> getAllCustomers() async {
     final db = await _dbHelper.database;
-    final customerMap = await db.query("customers");
+    // final add = await db.query(
+    //   "addresses",
+    //   where: 'customerId = ?',
+    //   whereArgs: [1],
+    // );
+    // print(add);
+    final customerMap = await db.query('customers');
     final customers = List<Customer>();
-
-    customerMap.forEach((c) {
-      customers.add(Customer.fromMap(c));
+    customerMap.forEach((c) async {
+      final cus = Customer.fromMap(c);
+      db.query(
+        "addresses",
+        where: 'customerId = ?',
+        whereArgs: [cus.id],
+      ).then((result) {
+        print(result);
+        result.forEach((add) {
+          cus.addresses.add(Address.fromMap(add));
+        });
+      }).catchError((err) {
+        print(err);
+      });
+      customers.add(cus);
     });
+
+    print(customers);
     return customers;
   }
 
@@ -112,22 +132,15 @@ class DbService {
     return result.first;
   }
 
-
-Future<int> insertAddress(Address address) async {
+  Future<int> insertAddress(Address address) async {
     final db = await _dbHelper.database;
     address.createdDate = DateTime.now().millisecondsSinceEpoch;
     address.updatedDate = DateTime.now().millisecondsSinceEpoch;
     try {
-      return await db.insert("addresses",address.toMap());
+      return await db.insert("addresses", address.toMap());
     } catch (ex) {
       print(ex.toString());
       return null;
     }
   }
-
-
-
-
-  
-
 }
